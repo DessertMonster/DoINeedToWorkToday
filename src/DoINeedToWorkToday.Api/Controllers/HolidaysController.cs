@@ -10,6 +10,7 @@ namespace DoINeedToWork.Api.Controllers
     [Route("api/[controller]")]
     public class HolidaysController
     {
+        [HttpGet]
         public IActionResult GetHolidayForToday()
         {
             //SystemTime.LocalNow = () => new DateTime(2018, 2, 19);
