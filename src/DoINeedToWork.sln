@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2B0C134B-F0C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7DB61004-A4C7-4FD7-94F8-3D08B2339F0E}"
 	ProjectSection(SolutionItems) = preProject
-		..\build\buildspec.yml = ..\build\buildspec.yml
+		..\buildspec.yml = ..\buildspec.yml
 		..\build\code-pipeline.yaml = ..\build\code-pipeline.yaml
 		..\build\create-pipeline.ps1 = ..\build\create-pipeline.ps1
 		..\build\parameters.json = ..\build\parameters.json
