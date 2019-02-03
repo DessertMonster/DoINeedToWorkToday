@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7DB61004
 		..\build\code-pipeline.yaml = ..\build\code-pipeline.yaml
 		..\build\create-pipeline.ps1 = ..\build\create-pipeline.ps1
 		..\build\parameters.json = ..\build\parameters.json
-		..\build\samTemplate.yaml = ..\build\samTemplate.yaml
+		..\samTemplate.yaml = ..\samTemplate.yaml
 	EndProjectSection
 EndProject
 Global
