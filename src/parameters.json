@@ -1,0 +1,42 @@
+{
+    "green-loyalty-single": {
+        "AWS": {
+            "CrossAccountDeploy": "false",
+            "StageAccountId": "434058760900",
+            "StageAccountProfile": "green-stage"
+        },
+        "Application": {
+            "AppName": "eb-loyalty",
+            "GitHubUser": "amaabca",
+            "GitHubRepoName": "Loyalty",
+            "GitHubRepoBranch": "eric.bach/mypipeline",
+            "GitHubToken": ""
+        },
+        "CodeBuild": {
+            "BuildImage": "aws/codebuild/dot-net:core-2.1",
+            "ComputeType": "BUILD_GENERAL1_LARGE",
+            "EnableVpcConfig": "true",
+            "VpcId": "vpc-ced210b6",
+            "VpcSubnet1": "subnet-00395e54059c12a8a",
+            "VpcSubnet2": "subnet-09d788660528087a7",
+            "VpcSecGroupId": "sg-ec6c289e"
+        }
+    },
+    "DoINeedToWork": {
+        "AWS": {
+            "StageAccountId": "155825364465",
+            "StageAccountProfile": "personal"
+        },
+        "Application": {
+            "AppName": "work-today",
+            "GitHubUser": "DessertMonster",
+            "GitHubRepoName": "DoINeedToWorkToday",
+            "GitHubRepoBranch": "master",
+            "GitHubToken": "c3e78443002e5356f4e18b9ee48b4c5716754ea0"
+        },
+        "CodeBuild": {
+            "BuildImage": "aws/codebuild/dot-net:core-2.1",
+            "ComputeType": "BUILD_GENERAL1_MEDIUM"
+        }
+    }
+}

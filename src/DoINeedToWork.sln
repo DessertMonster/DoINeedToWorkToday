@@ -5,6 +5,17 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoINeedToWork.Api", "DoINeedToWorkToday.Api\DoINeedToWork.Api.csproj", "{6918E9B2-9BEA-4B51-8513-35AE33F67134}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2B0C134B-F0CA-4B3D-A342-1BAB4378558E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7DB61004-A4C7-4FD7-94F8-3D08B2339F0E}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\buildspec.yml = ..\build\buildspec.yml
+		..\build\code-pipeline.yaml = ..\build\code-pipeline.yaml
+		create-pipeline.ps1 = create-pipeline.ps1
+		parameters.json = parameters.json
+		..\build\samTemplate.yaml = ..\build\samTemplate.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +29,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6918E9B2-9BEA-4B51-8513-35AE33F67134} = {2B0C134B-F0CA-4B3D-A342-1BAB4378558E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6889746-8474-4759-8BE8-1B397B5F5C37}

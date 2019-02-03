@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - dotnet restore src/DoINeedToWorkToday.Api/DoINeedToWorkToday.Api.csproj
+  build:
+    commands:
+      - dotnet publish src/DoINeedToWorkToday.Api/DoINeedToWorkToday.Api.csproj
+  post_build:
+    commands:
+      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket codepipeline-work-today-155825364465-us-west-2 --output-template-file outputSamTemplate.yaml
+artifacts:
+  files:
+    - samTemplate.yaml
+    - outputSamTemplate.yaml
+    - src/DoINeedToWorkToday.Api/bin/**/*

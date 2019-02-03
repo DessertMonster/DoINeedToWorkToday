@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Do I need to work application
+
+Mappings:
+  Constants:
+    Application: 
+      Name: work-today
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  WorkTodayWebApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      #Tags property is not supported yet
+      #Tags:
+      #  AppName: !FindInMap [Constants, Application, Name]
+
+  WorkTodayWebApiLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: work-today-BalanceWebApi
+      Handler: DoINeedToWork.Api::DoINeedToWork.Api.LambdaEntryPoint::FunctionHandlerAsync
+      Runtime: dotnetcore2.1
+      CodeUri: src/DoINeedToWork.Api/bin/Debug/netcoreapp2.1/publish
+      MemorySize: 256
+      Policies:
+        - AWSLambdaVPCAccessExecutionRole
+      Events:
+        GetHolidaysApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref WorkTodayWebApi
+            Path: /api/Holidays
+            Method: GET
+      Tags:
+        AppName: !FindInMap [Constants, Application, Name]
