@@ -32,7 +32,7 @@
             "GitHubUser": "DessertMonster",
             "GitHubRepoName": "DoINeedToWorkToday",
             "GitHubRepoBranch": "master",
-            "GitHubToken": "99fa87aeb4220cfd677ba46fce49355a7939b059"
+            "GitHubToken": ""
         },
         "CodeBuild": {
             "BuildImage": "aws/codebuild/dot-net:core-2.1",
