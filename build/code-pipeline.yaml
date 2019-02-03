@@ -14,10 +14,6 @@ Parameters:
   StageAccount:
     Description: AWS AccountNumber for staging
     Type: Number
-  StagingFile:
-    Type: String
-    Description: The cloudformation staging file. Leave empty if no staging file is needed
-    Default: stage.json
   GitHubUser:
     Type: String
     Description: GitHub UserName. This username must have access to the GitHubToken.
@@ -33,9 +29,6 @@ Parameters:
     NoEcho: true
     Type: String
     Description: "Secret. OAuthToken with access to Repo. Long string of characters and digits. Go to https://github.com/settings/tokens"
-Conditions:
-  HasStagingVariables: !Not
-    - !Equals [!Ref StagingFile, ""]
 Resources:
   CodeBuildRole:
     Type: AWS::IAM::Role
@@ -344,12 +337,6 @@ Resources:
                 StackName: !Sub ${AppName}-stack
                 Capabilities: CAPABILITY_NAMED_IAM
                 TemplatePath: BuildOutput::outputSamTemplate.yaml
-                TemplateConfiguration:
-                 !If [
-                   HasStagingVariables,
-                   !Sub "BuildOutput::${StagingFile}",
-                   "",
-                 ]
               InputArtifacts:
                 - Name: !Sub BuildOutput
               RunOrder: 1
