@@ -11,7 +11,7 @@ $StageAccountId = $environment.$configName.AWS.StageAccountId
 $StageAccountProfile = $environment.$configName.AWS.StageAccountProfile
 $ProdAccountId = $environment.$configName.AWS.ProdAccountId
 $ProdAccountProfile = $environment.$configName.AWS.ProdAccountProfile
-$AppName = $environment.$configName.Application.Name
+$AppName = $environment.$configName.Application.AppName
 $ApprovalEmail = $environment.$configName.Application.ApprovalEmail
 $GitHubUser = $environment.$configName.Application.GitHubUser
 $GitHubRepoName = $environment.$configName.Application.GitHubRepoName
@@ -79,8 +79,9 @@ Read-Host
 aws cloudformation deploy `
     --stack-name $AppName-codepipeline `
     --template-file ./code-pipeline.yaml `
-    --parameter-overrides 
+    --parameter-overrides `
         AppName=$AppName `
+        StageAccount=$StageAccountId `
         BuildImage=$BuildImage `
         GitHubUser=$GitHubUser `
         GitHubRepoName=$GitHubRepoName `

@@ -11,6 +11,9 @@ Parameters:
   BuildImage:
     Type: String
     Description: "AWS Docker build iamge. Go to https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html"
+  StageAccount:
+    Description: AWS AccountNumber for staging
+    Type: Number
   StagingFile:
     Type: String
     Description: The cloudformation staging file. Leave empty if no staging file is needed
