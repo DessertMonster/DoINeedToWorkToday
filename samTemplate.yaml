@@ -26,7 +26,7 @@ Resources:
       FunctionName: work-today-BalanceWebApi
       Handler: DoINeedToWork.Api::DoINeedToWork.Api.LambdaEntryPoint::FunctionHandlerAsync
       Runtime: dotnetcore2.1
-      CodeUri: DoINeedToWork.Api/bin/Debug/netcoreapp2.1/publish
+      CodeUri: src/DoINeedToWorkToday.Api/bin/Debug/netcoreapp2.1/publish
       MemorySize: 256
       Policies:
         - AWSLambdaVPCAccessExecutionRole
