@@ -23,7 +23,7 @@ Resources:
   WorkTodayWebApiLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: work-today-BalanceWebApi
+      FunctionName: work-today-WebApi
       Handler: DoINeedToWork.Api::DoINeedToWork.Api.LambdaEntryPoint::FunctionHandlerAsync
       Runtime: dotnetcore2.1
       CodeUri: src/DoINeedToWorkToday.Api/bin/Debug/netcoreapp2.1/publish
