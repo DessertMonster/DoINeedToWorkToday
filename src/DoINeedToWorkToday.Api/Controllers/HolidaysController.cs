@@ -13,8 +13,6 @@ namespace DoINeedToWork.Api.Controllers
         [HttpGet]
         public IActionResult GetHolidayForToday()
         {
-            //SystemTime.LocalNow = () => new DateTime(2018, 2, 19);
-
             var html = @"https://www.alberta.ca/alberta-general-holidays.aspx";
             HtmlWeb web = new HtmlWeb();
             var htmlDoc = web.Load(html);

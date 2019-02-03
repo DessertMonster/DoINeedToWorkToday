@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoINeedToWork.Api", "DoINeedToWorkToday.Api\DoINeedToWork.Api.csproj", "{6918E9B2-9BEA-4B51-8513-35AE33F67134}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoINeedToWork.Api", "DoINeedToWorkToday.Api\DoINeedToWork.Api.csproj", "{6918E9B2-9BEA-4B51-8513-35AE33F67134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
