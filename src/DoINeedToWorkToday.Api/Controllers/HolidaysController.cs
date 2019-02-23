@@ -15,12 +15,6 @@ namespace DoINeedToWork.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetHolidayForTodayAsync()
         {
-            var systemTimeZones = TimeZoneInfo.GetSystemTimeZones();
-
-            LambdaLogger.Log("System time zones:");
-
-            systemTimeZones.ToList().ForEach(tz => LambdaLogger.Log(tz.Id));
-
             var now = GetDateTimeInTimeZone(TimeZoneInfo.CreateCustomTimeZone("Mountain Standard Time", new TimeSpan(-7, 0, 0), "(UTC-07:00) Mountain Time (US & Canada)", "Mountain Standard Time"));
 
             LambdaLogger.Log($"It's {now} in Edmonton now");
