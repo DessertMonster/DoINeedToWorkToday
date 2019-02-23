@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Amazon.Lambda.Core;
+using System.Threading.Tasks;
 
 namespace DoINeedToWork.Api.Controllers
 {
@@ -12,13 +13,13 @@ namespace DoINeedToWork.Api.Controllers
     public class HolidaysController
     {
         [HttpGet]
-        public IActionResult GetHolidayForToday()
+        public async Task<IActionResult> GetHolidayForTodayAsync()
         {
             var now = GetDateTimeInTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time"));
 
             LambdaLogger.Log($"It's {now} in Edmonton now");
 
-            var holidayForToday = GetGeneralHolidays().SingleOrDefault(h => h.Date == now.Date);
+            var holidayForToday = (await GetGeneralHolidays()).SingleOrDefault(h => h.Date == now.Date);
 
             if (holidayForToday != null)
             {
@@ -27,11 +28,11 @@ namespace DoINeedToWork.Api.Controllers
             return new NotFoundObjectResult("Today is not a holiday.");
         }
 
-        private List<Holiday> GetGeneralHolidays()
+        private async Task<List<Holiday>> GetGeneralHolidays()
         {
             var html = @"https://www.alberta.ca/alberta-general-holidays.aspx";
             HtmlWeb web = new HtmlWeb();
-            var htmlDoc = web.Load(html);
+            var htmlDoc = await web.LoadFromWebAsync(html);
 
             var statRows = htmlDoc.DocumentNode.SelectNodes("//*[@class='goa-table']/table")[0].Descendants("tr");
             var optionalRows = htmlDoc.DocumentNode.SelectNodes("//*[@class='goa-table']/table")[1].Descendants("tr");
