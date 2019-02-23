@@ -4,6 +4,7 @@ using DoINeedToWork.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Amazon.Lambda.Core;
 
 namespace DoINeedToWork.Api.Controllers
 {
@@ -13,9 +14,11 @@ namespace DoINeedToWork.Api.Controllers
         [HttpGet]
         public IActionResult GetHolidayForToday()
         {
-            var today = GetDateTimeInTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time")).Date;
+            var now = GetDateTimeInTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time"));
 
-            var holidayForToday = GetGeneralHolidays().SingleOrDefault(h => h.Date == today);
+            LambdaLogger.Log($"It's {now} in Edmonton now");
+
+            var holidayForToday = GetGeneralHolidays().SingleOrDefault(h => h.Date == now.Date);
 
             if (holidayForToday != null)
             {
