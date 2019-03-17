@@ -26,7 +26,7 @@ Resources:
       FunctionName: work-today-WebApi
       Handler: DoINeedToWork.Api::DoINeedToWork.Api.LambdaEntryPoint::FunctionHandlerAsync
       Runtime: dotnetcore2.1
-      CodeUri: src/DoINeedToWorkToday.Api/bin/Debug/netcoreapp2.1/publish
+      CodeUri: src/DoINeedToWork.Api/bin/Debug/netcoreapp2.1/publish
       MemorySize: 256
       Policies:
         - AWSLambdaVPCAccessExecutionRole
@@ -37,5 +37,18 @@ Resources:
             RestApiId: !Ref WorkTodayWebApi
             Path: /api/Holidays
             Method: GET
+      Tags:
+        AppName: !FindInMap [Constants, Application, Name]
+
+  WorkTodayLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: work-today-Lambda
+      Handler: DoINeedToWork.Lambda::DoINeedToWork.Lambda.LambdaEntryPoint::FunctionHandlerAsync
+      Runtime: dotnetcore2.1
+      CodeUri: src/DoINeedToWork.Lambda/bin/Debug/netcoreapp2.1/publish
+      MemorySize: 128
+      Policies:
+        - AWSLambdaVPCAccessExecutionRole
       Tags:
         AppName: !FindInMap [Constants, Application, Name]

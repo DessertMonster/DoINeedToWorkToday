@@ -2,10 +2,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - dotnet restore src/DoINeedToWorkToday.Api/DoINeedToWork.Api.csproj
+      - dotnet restore src/DoINeedToWork.Api/DoINeedToWork.Api.csproj
+      - dotnet restore src/DoINeedToWork.Lambda/DoINeedToWork.Lambda.csproj
   build:
     commands:
-      - dotnet publish src/DoINeedToWorkToday.Api/DoINeedToWork.Api.csproj
+      - dotnet publish src/DoINeedToWork.Api/DoINeedToWork.Api.csproj
+      - dotnet publish src/DoINeedToWork.Lambda/DoINeedToWork.Lambda.csproj
   post_build:
     commands:
       - aws cloudformation package --template-file samTemplate.yaml --s3-bucket codepipeline-work-today-155825364465-us-west-2 --output-template-file outputSamTemplate.yaml
@@ -13,4 +15,5 @@ artifacts:
   files:
     - samTemplate.yaml
     - outputSamTemplate.yaml
-    - src/DoINeedToWorkToday.Api/bin/**/*
+    - src/DoINeedToWork.Api/bin/**/*
+    - src/DoINeedToWork.Lambda/bin/**/*
