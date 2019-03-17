@@ -55,6 +55,6 @@ Resources:
             Action:
               - codepipeline:PollForJobs
             Resource:
-              - !Sub arn:aws:codepipeline:${AWS::Region}:${AWS::AccountId}:work-today-pipeline
+              - !Sub arn:aws:codepipeline:${AWS::Region}:${AWS::AccountId}:*
       Tags:
         AppName: !FindInMap [Constants, Application, Name]
