@@ -50,5 +50,10 @@ Resources:
       MemorySize: 128
       Policies:
         - AWSLambdaVPCAccessExecutionRole
+        - Statement:
+          - Effect: Allow
+            Action:
+              - codepipeline:PollForJobs
+            Resource: *
       Tags:
         AppName: !FindInMap [Constants, Application, Name]
