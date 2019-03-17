@@ -27,7 +27,9 @@ namespace DoINeedToWork.Lambda
                 ActionTypeId = new Amazon.CodePipeline.Model.ActionTypeId
                 {
                     Category = ActionCategory.Invoke,
-                    Provider = "Lambda"
+                    Owner = ActionOwner.AWS,
+                    Provider = "Lambda",
+                    Version = "1"
                 }
             });
 
