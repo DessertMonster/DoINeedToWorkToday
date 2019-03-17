@@ -13,6 +13,7 @@ $ProdAccountId = $environment.$configName.AWS.ProdAccountId
 $ProdAccountProfile = $environment.$configName.AWS.ProdAccountProfile
 $AppName = $environment.$configName.Application.AppName
 $ApprovalEmail = $environment.$configName.Application.ApprovalEmail
+$LambdaToInvoke = $environment.$configName.Application.LambdaToInvoke
 $GitHubUser = $environment.$configName.Application.GitHubUser
 $GitHubRepoName = $environment.$configName.Application.GitHubRepoName
 $GitHubRepoBranch = $environment.$configName.Application.GitHubRepoBranch
@@ -67,6 +68,11 @@ Write-Host "      S3Bucket:           $S3Bucket"
 Write-Host ""
 Write-Host "   Application"
 Write-Host "      AppName:            $AppName"
+
+if ($LambdaToInvoke) {
+Write-Host "      LambdaToInvoke:     $LambdaToInvoke"
+}
+
 Write-Host "      GitHubUser:         $GitHubUser"
 Write-Host "      GitHubRepoName:     $GitHubRepoName"
 Write-Host "      GitHubRepoBranch:   $GitHubRepoBranch"
@@ -81,6 +87,7 @@ aws cloudformation deploy `
     --template-file ./code-pipeline.yaml `
     --parameter-overrides `
         AppName=$AppName `
+        LambdaToInvoke=$LambdaToInvoke `
         StageAccount=$StageAccountId `
         BuildImage=$BuildImage `
         GitHubUser=$GitHubUser `

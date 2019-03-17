@@ -29,6 +29,7 @@
         },
         "Application": {
             "AppName": "work-today",
+            "LambdaToInvoke": "work-today-lambda",
             "GitHubUser": "DessertMonster",
             "GitHubRepoName": "DoINeedToWorkToday",
             "GitHubRepoBranch": "master",

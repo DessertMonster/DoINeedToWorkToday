@@ -10,7 +10,7 @@ Parameters:
     ConstraintDescription: Malformed input parameter. AppName must only contain upper and lower case letters, numbers, and -.
   BuildImage:
     Type: String
-    Description: "AWS Docker build iamge. Go to https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html"
+    Description: "AWS Docker build image. Go to https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html"
   StageAccount:
     Description: AWS AccountNumber for staging
     Type: Number
@@ -29,6 +29,11 @@ Parameters:
     NoEcho: true
     Type: String
     Description: "Secret. OAuthToken with access to Repo. Long string of characters and digits. Go to https://github.com/settings/tokens"
+  LambdaToInvoke:
+    Type: String
+    Description: "Name of the Lambda function to be invoked after deployment"
+Conditions:
+  CreateInvokeLambdaStage: !Not [!Equals [!Ref LambdaToInvoke, ""]]
 Resources:
   CodeBuildRole:
     Type: AWS::IAM::Role
@@ -351,6 +356,19 @@ Resources:
                 ActionMode: CHANGE_SET_EXECUTE
                 StackName: !Sub ${AppName}-stack
               RunOrder: 2
+        - !If
+          - CreateInvokeLambdaStage
+          - Name: PostDeploy
+            Actions:
+              - Name: InvokeLambda
+                ActionTypeId:
+                  Category: Invoke
+                  Owner: AWS
+                  Provider: Lambda
+                  Version: 1
+                Configuration:
+                  FunctionName: !Ref LambdaToInvoke
+          - !Ref AWS::NoValue
       ArtifactStore:
         Type: S3
         Location: !Sub codepipeline-${AppName}-${AWS::AccountId}-${AWS::Region}
